@@ -5,7 +5,7 @@ var email_error = document.getElementById('email_error');
 var pass_error = document.getElementById('pass_error');
 
 email.addEventListener('textInput', email_Verify);
-password.addEventListener('textInput', email_Verify);
+password.addEventListener('textInput', pass_Verify);
 
 function validated(){
     if (email.value.length < 9){
