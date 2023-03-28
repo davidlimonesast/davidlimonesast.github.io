@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estenografia</title>
+    <link rel="shortcut icon" href="#">
+    <!-- ↓↓↓↓ link para agregar el estilo de bootstrap ↓↓↓↓ -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: lightseagreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4">
+        <header class="pb-3 mb-4 border-bottom"> <!-- pb = padding bottom; mb = margin bottom -->
+            <span class="fs-4">David Limones - Matrícula: 185397 </span>
+            <!--fs= font size-->
+            </a>
+        </header>
+
+        <div class="card border-dark mb-3">
+            <div class="text border-0" style="background-color:mediumslateblue">
+                <div class="container-fluid py-2">
+                    <center>
+                        <h3><strong>Estenografia</strong></h3>
+                    </center>
+                </div>
+            </div>
+
+            <div class="card-body text-bg-light">
+                <label for="texto">Introduce el texto para "descifrar":</label>
+                <br>
+                <textarea class="form-control" type="text" id="texto" name="texto" rows="1"></textarea>
+                <br>
+                <div class="card">
+                    <div class="card-footer">
+                    <h5>Texto ingresado:</h5>
+                    <p id="texto-ingresado"></p>
+                    </div>
+                </div>
+
+                <br>
+                <div class="card">
+                    <div class="card-footer">
+                    <h5>Texto marcado:</h5>
+                    <p id="texto-marcado"></p>
+                    </div>
+                </div>
+
+                <!--<br>
+                <div class="card">
+                    <div class="card-footer">
+                    <p id="mensaje"></p>
+                    </div>
+                </div>-->
+
+                <br>
+                <div class="card">
+                    <div class="card-footer">
+                    <h5>Letras rojas del mensaje:</h5>
+                    <p id="letras-rojas"></p>
+                    </div>
+                </div>
+
+                <script>
+                    // función para marcar las primeras letras en rojo
+                    function descifrar() {
+                        // obtener el texto ingresado
+                        const texto = document.getElementById("texto").value;
+
+                        // marcar las primeras letras en rojo
+                        const textoMarcado = texto.replace(/(\b\w)/g, "<span style='color: red; font-weight: bold;'>$1</span>");
+
+                        // mostrar el texto ingresado y el texto marcado en los cuadros correspondientes
+                        const textoIngresado = document.getElementById("texto-ingresado");
+                        const textoMarcadoElem = document.getElementById("texto-marcado");
+                        textoIngresado.innerText = texto;
+                        textoMarcadoElem.innerHTML = textoMarcado;
+
+                        // obtener las letras marcadas en rojo
+                        const letrasRojas = texto.match(/\b\w/g).map((letra) => {
+                            return letra.toUpperCase();
+                        });
+
+                        // mostrar el mensaje oculto (letras marcadas en rojo)
+                        //const mensajeElem = document.getElementById("mensaje");
+                        //mensajeElem.innerText = textoMarcado.replace(/<[^>]+>/g, ''); 
+
+                        // mostrar las letras rojas en un cuadro diferente
+                        const letrasRojasElem = document.getElementById("letras-rojas");
+                        letrasRojasElem.innerText = letrasRojas.join(' ');
+                    }
+                </script>
+                <br>
+                <button onclick="descifrar()" class="btn btn-primary">Descrifrar</button>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

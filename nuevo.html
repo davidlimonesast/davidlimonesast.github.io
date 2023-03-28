@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Marcar primeras letras de un texto en rojo</title>
+  </head>
+  <body>
+    <h1>Marcar primeras letras de un texto en rojo</h1>
+    <label for="texto">Ingrese el texto:</label>
+    <input type="text" id="texto" name="texto">
+    <button onclick="marcar()">Marcar</button>
+    
+    <div>
+      <h2>Texto ingresado:</h2>
+      <p id="texto-ingresado"></p>
+    </div>
+    
+    <div>
+      <h2>Texto marcado:</h2>
+      <p id="texto-marcado"></p>
+    </div>
+    
+    <div>
+      <h2>Mensaje oculto:</h2>
+      <p id="mensaje"></p>
+    </div>
+
+    <div>
+      <h2>Letras rojas del mensaje:</h2>
+      <p id="letras-rojas"></p>
+    </div>
+    
+    <script>
+      // función para marcar las primeras letras en rojo
+      function marcar() {
+        // obtener el texto ingresado
+        const texto = document.getElementById("texto").value;
+        
+        // marcar las primeras letras en rojo
+        const textoMarcado = texto.replace(/(\b\w)/g, "<span style='color: red; font-weight: bold;'>$1</span>");
+        
+        // mostrar el texto ingresado y el texto marcado en los cuadros correspondientes
+        const textoIngresado = document.getElementById("texto-ingresado");
+        const textoMarcadoElem = document.getElementById("texto-marcado");
+        textoIngresado.innerText = texto;
+        textoMarcadoElem.innerHTML = textoMarcado;
+        
+        // obtener las letras marcadas en rojo
+        const letrasRojas = texto.match(/\b\w/g).map((letra) => {
+          return letra.toUpperCase();
+        });
+        
+        // mostrar el mensaje oculto (letras marcadas en rojo)
+        const mensajeElem = document.getElementById("mensaje");
+        mensajeElem.innerText = textoMarcado.replace(/<[^>]+>/g, ''); // quitar las etiquetas HTML del texto marcado
+        
+        // mostrar las letras rojas en un cuadro diferente
+        const letrasRojasElem = document.getElementById("letras-rojas");
+        letrasRojasElem.innerText = letrasRojas.join(' ');
+      }
+    </script>
+  </body>
+</html>
